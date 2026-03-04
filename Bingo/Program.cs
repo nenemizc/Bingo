@@ -14,6 +14,11 @@ namespace Bingo
                 string nev = Path.GetFileNameWithoutExtension(fajl);
                 int?[,] kartya = BeolvasKartya(fajl);
                 jatekosok.Add(new BingoJatekos(nev, kartya));
+                if (jatekosok.Count == 100)
+                {
+                    Console.WriteLine("Elérte a maximum játékos számot");
+                    break;
+                }
             }
 
             Console.WriteLine($"4. feladat: Játékosok száma: {jatekosok.Count}");
