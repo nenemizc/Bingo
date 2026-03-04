@@ -73,5 +73,26 @@ namespace Bingo
             return atlo2;
         }
 
+        public void KartyaMegjelenit()
+        {
+            Console.WriteLine($"\nJátékos: {nev}");
+            for (int i = 0; i < 5; i++)
+            {
+                for (int j = 0; j < 5; j++)
+                {
+                    if (talalat[i, j])
+                    {
+                        if (kartya[i, j] == null)
+                            Console.Write(" X ");
+                        else
+                            Console.Write($"{kartya[i, j],2} ");
+                    }
+                    else
+                        Console.Write(" 0 ");
+                }
+                Console.WriteLine();
+            }
+        }
+
     }
 }

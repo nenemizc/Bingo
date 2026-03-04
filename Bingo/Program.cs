@@ -21,8 +21,52 @@ namespace Bingo
                 }
             }
 
-            Console.WriteLine($"4. feladat: Játékosok száma: {jatekosok.Count}");
+            Console.WriteLine($"4. feladat: Játékosok száma: {jatekosok.Count}\n");
+
+            Console.WriteLine("7. feladat: Kihúzott számok");
+            Random rnd = new Random();
+            List<int> huzottSzamok = new List<int>();
+            List<BingoJatekos> nyertesek = new List<BingoJatekos>();
+
+            int huzasSorszam = 1;
+
+            while (nyertesek.Count == 0 && huzottSzamok.Count < 75)
+            {
+                int szam;
+                do
+                {
+                    szam = rnd.Next(1, 76);
+                } while (huzottSzamok.Contains(szam));
+
+                huzottSzamok.Add(szam);
+
+                Console.WriteLine($"{huzasSorszam,2}. -> {szam,2}");
+                huzasSorszam++;
+
+                foreach (var j in jatekosok)
+                {
+                    j.SorsoltSzamotJelol(szam);
+                    if (j.BingoEll() && !nyertesek.Contains(j))
+                        nyertesek.Add(j);
+                }
+            }
+
+            if (nyertesek.Count > 0)
+            {
+                Console.WriteLine("\n8. feladat: Lehetséges nyertes(ek)");
+                foreach (var j in nyertesek)
+                {
+                    j.KartyaMegjelenit();
+                }
+            }
+            else
+            {
+                Console.WriteLine("\nNem lett nyertes.");
+            }
+
+            Console.ReadKey();
         }
+
         static int?[,] BeolvasKartya(string fajl)
         {
             
