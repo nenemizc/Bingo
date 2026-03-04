@@ -7,7 +7,7 @@ namespace Bingo
         static void Main(string[] args)
         {
             List<BingoJatekos> jatekosok = new List<BingoJatekos>();
-            string[] fajlok = File.ReadAllLines("nevek.txt");
+            string[] fajlok = File.ReadAllLines("nevek.text");
 
             foreach (string fajl in fajlok)
             {
@@ -15,6 +15,8 @@ namespace Bingo
                 int?[,] kartya = BeolvasKartya(fajl);
                 jatekosok.Add(new BingoJatekos(nev, kartya));
             }
+
+            Console.WriteLine($"4. feladat: Játékosok száma: {jatekosok.Count}");
         }
         static int?[,] BeolvasKartya(string fajl)
         {
